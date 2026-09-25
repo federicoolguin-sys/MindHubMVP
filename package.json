@@ -1,0 +1,14 @@
+{
+  "name": "mindhub-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing page de MindHub",
+  "scripts": {
+    "dev": "tailwindcss -i ./src/input.css -o ./assets/css/styles.css --watch",
+    "build": "tailwindcss -i ./src/input.css -o ./assets/css/styles.css --minify",
+    "preview": "npx --yes serve -l 3000 ."
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}
