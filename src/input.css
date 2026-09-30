@@ -17,6 +17,17 @@
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-brand-magenta text-white font-semibold text-sm shadow-md shadow-pink-200 transition-all hover:opacity-95 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-magenta focus-visible:ring-offset-2;
   }
+
+  .client-logo {
+    @apply w-auto brightness-0 invert opacity-80 transition-opacity hover:opacity-100;
+  }
+
+  .section-ink {
+    background-color: #0a0a0a;
+    background-image:
+      radial-gradient(ellipse 50% 55% at 100% 0%, rgba(217, 27, 117, 0.28), transparent 55%),
+      radial-gradient(ellipse 40% 45% at 0% 100%, rgba(217, 27, 117, 0.14), transparent 50%);
+  }
 }
 
 @layer utilities {

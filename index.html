@@ -99,11 +99,11 @@
   <!-- END: HeroSection -->
 
   <!-- BEGIN: ProgramsSection -->
-  <section class="py-16 md:py-20 bg-[#FAFAFC] border-y border-gray-100" id="programas">
+  <section class="section-ink py-16 md:py-20" id="programas">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-14 max-w-3xl mx-auto">
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">Capacitación diseñada para transformar organizaciones</h2>
-        <div class="mt-5 space-y-3 text-brand-textMuted text-base leading-relaxed">
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">Capacitación diseñada para transformar organizaciones</h2>
+        <div class="mt-5 space-y-3 text-gray-300 text-base leading-relaxed">
           <p>Diseñamos programas a medida según la industria, el contexto y los desafíos de cada organización.</p>
           <p>La customización es el punto de partida: no trabajamos con soluciones cerradas, sino con propuestas que se construyen en función de lo que cada empresa realmente necesita.</p>
           <p>Estos son algunos de los programas que ya hemos diseñado, desarrollado y dictado para nuestros clientes:</p>
@@ -254,8 +254,15 @@
               <span class="w-2.5 h-2.5 rounded-full bg-yellow-500"></span>
               <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
             </div>
-            <div class="relative aspect-video rounded-b-lg overflow-hidden bg-neutral-900">
-              <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/UmROho-ztWg?si=n-WohtkXPo6JLEai" title="Nuestra historia - MindHub" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <div class="relative aspect-video rounded-b-lg overflow-hidden bg-neutral-900" data-youtube="UmROho-ztWg" data-youtube-title="Nuestra historia - MindHub">
+              <button type="button" class="group absolute inset-0 w-full h-full focus:outline-none" aria-label="Reproducir video: Nuestra historia">
+                <img alt="" class="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-300" src="assets/img/video-historia.jpg" width="1280" height="720" loading="lazy" decoding="async">
+                <span class="absolute inset-0 bg-black/30 flex items-center justify-center">
+                  <span class="w-16 h-16 bg-white/90 group-hover:bg-white text-brand-magenta rounded-full flex items-center justify-center shadow-lg transition-transform group-hover:scale-110 group-focus-visible:ring-4 group-focus-visible:ring-brand-magenta">
+                    <svg class="w-7 h-7 translate-x-0.5 fill-current" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"></path></svg>
+                  </span>
+                </span>
+              </button>
             </div>
           </div>
         </div>
@@ -285,13 +292,13 @@
   <section class="py-20 bg-brand-dark text-white">
     <div class="max-w-6xl mx-auto px-6 text-center">
       <h2 class="text-2xl sm:text-3xl font-bold tracking-tight mb-12 text-gray-100">Ya confiaron en nosotros...</h2>
-      <ul class="flex flex-wrap items-center justify-center gap-8 sm:gap-14 lg:gap-16 text-gray-300" aria-label="Clientes">
-        <li class="text-xl sm:text-2xl font-bold tracking-wider">Santander</li>
-        <li class="text-xl sm:text-2xl font-black tracking-widest">ITR</li>
-        <li class="text-2xl sm:text-3xl font-extrabold italic tracking-tight">Rappi</li>
-        <li class="text-xl sm:text-2xl font-medium tracking-wide">natura</li>
-        <li class="text-xl sm:text-2xl font-bold">accenture</li>
-        <li class="text-2xl sm:text-3xl font-black tracking-tighter">EY</li>
+      <ul class="flex flex-wrap items-center justify-center gap-x-12 gap-y-10 sm:gap-x-16" aria-label="Clientes">
+        <li><img src="assets/img/logo-santander.png" alt="Santander" class="client-logo h-6 sm:h-7" width="662" height="120" loading="lazy" decoding="async"></li>
+        <li><img src="assets/img/logo-itr.png" alt="ITR" class="client-logo h-9 sm:h-10" width="287" height="160" loading="lazy" decoding="async"></li>
+        <li><img src="assets/img/logo-rappi.png" alt="Rappi" class="client-logo h-8 sm:h-9" width="381" height="160" loading="lazy" decoding="async"></li>
+        <li><img src="assets/img/logo-natura.png" alt="Natura" class="client-logo h-11 sm:h-12" width="212" height="160" loading="lazy" decoding="async"></li>
+        <li><img src="assets/img/logo-accenture.png" alt="Accenture" class="client-logo h-7 sm:h-8" width="603" height="160" loading="lazy" decoding="async"></li>
+        <li><img src="assets/img/logo-ey.png" alt="EY" class="client-logo h-11 sm:h-12" width="158" height="160" loading="lazy" decoding="async"></li>
       </ul>
     </div>
   </section>
@@ -436,6 +443,19 @@
     });
     document.getElementById('year').textContent = new Date().getFullYear();
   })();
+
+  document.querySelectorAll('[data-youtube]').forEach(function (player) {
+    player.querySelector('button').addEventListener('click', function () {
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube.com/embed/' + player.dataset.youtube + '?autoplay=1&rel=0&playsinline=1';
+      iframe.title = player.dataset.youtubeTitle;
+      iframe.className = 'absolute inset-0 w-full h-full';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      iframe.allowFullscreen = true;
+      player.replaceChildren(iframe);
+    });
+  });
 
   document.querySelectorAll('[data-carousel]').forEach(function (carousel) {
     var track = carousel.querySelector('[data-carousel-track]');
