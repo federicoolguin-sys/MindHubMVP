@@ -4,10 +4,12 @@
   <meta charset="utf-8">
   <title>Catálogo</title>
   <script>
-    location.replace(location.pathname.replace(/\/+cursos\/?$/, "/catalogo.pdf"));
+    var pdf = location.pathname.replace(/\/+cursos\/?$/, "/catalogo.pdf");
+    document.write('<p><a href="' + pdf + '">Ver el catálogo</a></p>');
+    location.replace(pdf);
   </script>
 </head>
 <body>
-  <p><a href="../catalogo.pdf">Ver el catálogo</a></p>
+  <p><a href="catalogo.pdf">Ver el catálogo</a></p>
 </body>
 </html>
