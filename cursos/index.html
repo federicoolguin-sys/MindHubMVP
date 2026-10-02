@@ -3,10 +3,9 @@
 <head>
   <meta charset="utf-8">
   <title>Catálogo</title>
+  <style>body { display: none; }</style>
   <script>
-    var pdf = location.pathname.replace(/\/+cursos\/?$/, "/catalogo.pdf");
-    document.write('<p><a href="' + pdf + '">Ver el catálogo</a></p>');
-    location.replace(pdf);
+    location.replace(location.pathname.replace(/\/+cursos\/?$/, "/catalogo.pdf"));
   </script>
 </head>
 <body>
