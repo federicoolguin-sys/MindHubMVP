@@ -6,6 +6,8 @@ Sitio estático hecho con HTML + Tailwind CSS (CLI), publicado en GitHub Pages.
 
 ```
 index.html            Página principal (acá se edita el contenido)
+catalogo.pdf          PDF que se abre en la ruta /cursos
+cursos/index.html     Redirección de /cursos hacia catalogo.pdf (no se edita)
 src/input.css         Estilos fuente de Tailwind (componentes y utilidades propias)
 tailwind.config.js    Colores de marca, tipografía y archivos a escanear
 assets/css/styles.css CSS compilado (NO editar a mano, se genera con npm run build)
@@ -82,13 +84,22 @@ Los puntos de navegación y la numeración se generan solos.
 
 El link aparece varias veces en `index.html`. Usá **Buscar y reemplazar** (`Ctrl + H`) con la URL vieja y la nueva para cambiarlo en todos lados a la vez.
 
+### Actualizar el PDF de /cursos
+
+La ruta `/cursos` no aparece en la landing. Quien escribe la dirección a mano llega al PDF.
+
+1. Reemplazá `catalogo.pdf` en la raíz del proyecto por el archivo nuevo, con el mismo nombre.
+2. Subilo con git. No hace falta `npm run build`.
+
+La dirección publicada es `https://tudominio.com/cursos` (en GitHub Pages, `https://USUARIO.github.io/REPO/cursos`). Si no ves el PDF nuevo, recargá con `Ctrl + F5`.
+
 ### Cambiar colores de marca
 
 Editá `theme.extend.colors.brand` en `tailwind.config.js` y corré `npm run build`.
 
 ## Checklist antes de hacer push
 
-- [ ] Corrí `npm run build`
+- [ ] Si cambié clases de Tailwind, corrí `npm run build` (no hace falta si solo cambié textos, imágenes o el PDF)
 - [ ] Revisé la página en el navegador, en escritorio y en celular (F12 → modo dispositivo)
 - [ ] Las imágenes nuevas están en `assets/img/` y no pesan de más
 - [ ] No subí la carpeta `node_modules` (ya está en `.gitignore`)
