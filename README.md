@@ -1,6 +1,6 @@
 # MindHub - Landing page
 
-Sitio estático hecho con HTML + Tailwind CSS (CLI), publicado en GitHub Pages.
+Sitio estático hecho con HTML + Tailwind CSS (CLI).
 
 ## Estructura
 
@@ -21,12 +21,12 @@ assets/favicon.svg    Ícono de la pestaña
 2. Clonar el repo e instalar dependencias:
 
    ```bash
-   git clone https://github.com/USUARIO/REPO.git
-   cd REPO
+   git clone <url-del-repositorio>
+   cd <carpeta>
    npm install
    ```
 
-## Cómo subir cambios nuevos
+## Cómo publicar cambios
 
 ### 1. Traer la última versión
 
@@ -48,7 +48,7 @@ En otra terminal, levantá un servidor local y abrí [http://localhost:3000](htt
 npm run preview
 ```
 
-No abras `index.html` con doble clic: el video de YouTube da **error 153** cuando la página se abre como archivo local (`file://`). Con el servidor local o en GitHub Pages funciona bien.
+No abras `index.html` con doble clic: el video de YouTube da **error 153** cuando la página se abre como archivo local (`file://`). Con el servidor local funciona bien.
 
 ### 3. Compilar para producción
 
@@ -56,19 +56,26 @@ No abras `index.html` con doble clic: el video de YouTube da **error 153** cuand
 npm run build
 ```
 
-**Este paso es obligatorio antes de subir.** GitHub Pages publica el `assets/css/styles.css` que esté en el repo; si te olvidás, las clases nuevas de Tailwind no van a tener estilos en la web publicada.
+**Este paso es obligatorio antes de publicar.** El servidor usa el `assets/css/styles.css` que subas; si te olvidás, las clases nuevas de Tailwind no van a tener estilos.
 
-### 4. Subir a GitHub
+### 4. Publicar en el servidor
 
-```bash
-git add .
-git commit -m "Describe brevemente el cambio"
-git push
+Subí el sitio al directorio público del servidor (la raíz del dominio). Tiene que quedar así, para que `/` sea la landing y `/cursos` abra el PDF:
+
 ```
+index.html
+catalogo.pdf
+cursos/index.html
+assets/
+```
+
+No subas `node_modules`. `src/`, `package.json` y `tailwind.config.js` solo hacen falta para compilar, no para que el sitio se vea.
+
+El servidor tiene que servir archivos estáticos desde esa raíz. `/cursos` debe abrir `cursos/index.html`, y esa página redirige a `/catalogo.pdf`.
 
 ### 5. Verificar
 
-En 1 o 2 minutos el sitio se actualiza solo. Podés seguir el progreso en la pestaña **Actions** del repo. Si no ves el cambio, recargá con `Ctrl + F5` para saltear la caché.
+Abrí el dominio y recargá con `Ctrl + F5` para saltear la caché. Revisá también `/cursos`.
 
 ## Tareas frecuentes
 
@@ -86,18 +93,18 @@ El link aparece varias veces en `index.html`. Usá **Buscar y reemplazar** (`Ctr
 
 ### Actualizar el PDF de /cursos
 
-La ruta `/cursos` no aparece en la landing. Quien escribe la dirección a mano llega al PDF.
+El footer enlaza a `/cursos`, y esa ruta redirige a `catalogo.pdf`.
 
 1. Reemplazá `catalogo.pdf` en la raíz del proyecto por el archivo nuevo, con el mismo nombre.
-2. Subilo con git. No hace falta `npm run build`.
+2. Publicalo junto con el resto del sitio. No hace falta `npm run build`.
 
-La dirección publicada es `https://tudominio.com/cursos` (en GitHub Pages, `https://USUARIO.github.io/REPO/cursos`). Si no ves el PDF nuevo, recargá con `Ctrl + F5`.
+La dirección queda `https://tudominio.com/cursos`. Si no ves el PDF nuevo, recargá con `Ctrl + F5`.
 
 ### Cambiar colores de marca
 
 Editá `theme.extend.colors.brand` en `tailwind.config.js` y corré `npm run build`.
 
-## Checklist antes de hacer push
+## Checklist antes de publicar
 
 - [ ] Si cambié clases de Tailwind, corrí `npm run build` (no hace falta si solo cambié textos, imágenes o el PDF)
 - [ ] Revisé la página en el navegador, en escritorio y en celular (F12 → modo dispositivo)
